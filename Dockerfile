@@ -1,11 +1,14 @@
-FROM golang:1.12.0-alpine3.9
+# Use the specified Go version as the base image
+FROM golang:1.21.5-alpine3.19
 
-RUN mkdir /app
-
-ADD . /app
-
+# Set the working directory inside the container
 WORKDIR /app
 
+# Copy the source code into the container
+COPY . .
+
+# Build the Go application
 RUN go build -o main .
 
-CMD [ "/app/main" ]
+# Command to run the executable
+CMD ["/app/main"]
